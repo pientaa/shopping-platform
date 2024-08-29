@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  shopping-platform-db:
+    container_name: shopping-platform-db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: shopping-platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
