@@ -1,0 +1,24 @@
+package com.pientaa.shoppingplatform.discounts.domain.model
+
+import java.util.UUID
+
+data class Product(
+    val id: UUID,
+    val price: Money
+)
+
+
+data class ProductCart(
+    val cart: Map<Product, Quantity>
+) {
+    fun isNotEmpty(): Boolean = cart.isNotEmpty()
+}
+
+data class ProductCartEntry(
+    val cartEntry: Map.Entry<Product, Quantity>
+) {
+    val productPrice: Money
+        get() = cartEntry.key.price
+    val productQuantity: Quantity
+        get() = cartEntry.value
+}
