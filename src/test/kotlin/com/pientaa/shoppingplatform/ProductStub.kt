@@ -1,7 +1,7 @@
 package com.pientaa.shoppingplatform
 
-import com.pientaa.shoppingplatform.discounts.domain.model.Money
-import com.pientaa.shoppingplatform.discounts.domain.model.Product
+import com.pientaa.shoppingplatform.pricing.domain.model.Money
+import com.pientaa.shoppingplatform.pricing.domain.model.Product
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.UUID
