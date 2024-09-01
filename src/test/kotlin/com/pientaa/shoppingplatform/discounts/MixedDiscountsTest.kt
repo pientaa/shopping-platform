@@ -1,6 +1,6 @@
 package com.pientaa.shoppingplatform.discounts
 
-import com.pientaa.shoppingplatform.discounts.domain.DiscountService
+import com.pientaa.shoppingplatform.discounts.domain.PriceCalculator
 import com.pientaa.shoppingplatform.discounts.domain.model.CountBasedDiscount
 import com.pientaa.shoppingplatform.discounts.domain.model.Discount
 import com.pientaa.shoppingplatform.discounts.domain.model.DiscountModifier
@@ -11,10 +11,22 @@ import com.pientaa.shoppingplatform.discounts.domain.model.ProductCart
 import com.pientaa.shoppingplatform.discounts.domain.model.Quantity
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.assertThrows
 import java.util.UUID
 
 class MixedDiscountsTest : BehaviorSpec({
-    val service = DiscountService()
+    val service = PriceCalculator()
+
+    Given("No products in cart") {
+        val productCart = ProductCart(mapOf())
+        val discounts = listOf<Discount<*>>()
+
+        When("Calculate total price") {
+            Then("Should throw an exception") {
+                assertThrows<Exception> { service.calculateTotalPrice(productCart, discounts) }
+            }
+        }
+    }
 
     Given("3 Products with different count in cart") {
         val productCart = ProductCart(

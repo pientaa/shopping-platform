@@ -14,5 +14,8 @@ class TotalPriceDiscountEntity(
     val id: UUID = UUID.randomUUID(),
 
     @Column(nullable = false)
-    val discountModifier: BigDecimal
+    val discountModifier: BigDecimal,
+
+    @Column(nullable = false)
+    val active: Boolean = true
 )

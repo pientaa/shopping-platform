@@ -20,5 +20,8 @@ class ProductCountDiscountEntity(
     val productId: UUID,
 
     @Column(nullable = false)
-    val threshold: Int
+    val threshold: Int,
+
+    @Column(nullable = false)
+    val active: Boolean = true
 )

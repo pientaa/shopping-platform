@@ -1,0 +1,27 @@
+# Test Discount Configuration
+# ===========================
+# This configuration file is specifically used for testing purposes.
+# It is a separate copy of the production configuration file located at `resources/discounts.yml`.
+#
+# The purpose of this file is to provide controlled and predictable discount rules
+# that can be used in automated tests to verify the correctness of discount application logic.
+#
+# By separating test configuration from production configuration, we ensure:
+# 1. **Isolation**: Tests run independently of the production environment, avoiding unintended side effects.
+# 2. **Consistency**: The discount rules in this file remain constant across test runs, ensuring reproducible results.
+# 3. **Safety**: Changes to the test configuration do not impact production systems, and vice versa.
+#
+# The structure and rules in this file mirror the production configuration to ensure
+# that the tests accurately reflect real-world scenarios.
+
+fixedPercentageDiscounts:
+  - discountModifier: "0.90"
+  - discountModifier: "0.95"
+
+countBasedDiscounts:
+  - discountModifier: "0.50"
+    productId: "d4e5f7b2-91e8-4c62-b6ae-14f5d3c3e8b3"
+    threshold: 2
+  - discountModifier: "0.25"
+    productId: "c5f8cdd8-0d5c-4e5d-998e-23c6a0d3486e"
+    threshold: 8

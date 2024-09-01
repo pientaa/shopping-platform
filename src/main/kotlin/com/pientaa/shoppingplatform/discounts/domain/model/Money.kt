@@ -2,6 +2,7 @@ package com.pientaa.shoppingplatform.discounts.domain.model
 
 import java.math.BigDecimal
 import java.util.Currency
+import java.math.RoundingMode
 
 
 /**
@@ -24,7 +25,7 @@ class Money private constructor(
         private const val SCALE = 2
 
         fun of(amount: BigDecimal, currency: Currency): Money {
-            return Money(amount.setScale(SCALE), currency)
+            return Money(amount.setScale(SCALE, RoundingMode.HALF_UP), currency)
         }
     }
 

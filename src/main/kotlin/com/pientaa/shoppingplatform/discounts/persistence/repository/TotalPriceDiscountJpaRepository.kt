@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface TotalPriceDiscountJpaRepository : JpaRepository<TotalPriceDiscountEntity, UUID>
+interface TotalPriceDiscountJpaRepository : JpaRepository<TotalPriceDiscountEntity, UUID> {
+    fun findAllByActive(active: Boolean): List<TotalPriceDiscountEntity>
+}

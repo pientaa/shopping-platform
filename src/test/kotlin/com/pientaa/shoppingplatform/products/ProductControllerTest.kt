@@ -3,8 +3,7 @@ package com.pientaa.shoppingplatform.products
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.pientaa.shoppingplatform.config.IntegrationTest
-import com.pientaa.shoppingplatform.products.persistence.ProductEntity
-import com.pientaa.shoppingplatform.products.persistence.ProductPrice
+import com.pientaa.shoppingplatform.products.api.ProductDTO
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
@@ -13,7 +12,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import java.math.BigDecimal
-import java.util.Currency
 
 @IntegrationTest
 class ProductControllerTest(
@@ -30,16 +28,17 @@ class ProductControllerTest(
             row("a0f1c8b4-8421-4c47-a550-5e9c2c6b0e8f", "12.99", "USD"),
         ) { id, price, currency ->
 
-            val result = mockMvc.get("/products/$id") {
+            val result = mockMvc.get("/api/products/$id") {
                 accept(MediaType.APPLICATION_JSON)
             }
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
                 }.andReturn()
-                .let { objectMapper.readValue<ProductEntity>(it.response.contentAsString) }
+                .let { objectMapper.readValue<ProductDTO>(it.response.contentAsString) }
 
-            result.price shouldBe ProductPrice(BigDecimal(price), Currency.getInstance(currency))
+            result.amount shouldBe BigDecimal(price)
+            result.currency shouldBe currency
         }
     }
 })

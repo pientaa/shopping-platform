@@ -4,20 +4,25 @@ import java.math.BigDecimal
 import java.util.UUID
 
 interface Discount<in T : Any> {
+    val id: UUID
     val discountModifier: DiscountModifier
     fun appliedTo(item: T): Money
 }
 
-data class FixedPercentageDiscount(override val discountModifier: DiscountModifier) : Discount<Money> {
+data class FixedPercentageDiscount(
+    override val id: UUID = UUID.randomUUID(),
+    override val discountModifier: DiscountModifier
+) : Discount<Money> {
     override fun appliedTo(item: Money): Money {
         return item * discountModifier.value
     }
 
     fun merge(other: FixedPercentageDiscount) =
-        FixedPercentageDiscount(discountModifier = discountModifier * other.discountModifier)
+        FixedPercentageDiscount(id = id, discountModifier = discountModifier * other.discountModifier)
 }
 
 data class CountBasedDiscount(
+    override val id: UUID = UUID.randomUUID(),
     override val discountModifier: DiscountModifier,
     val productId: UUID,
     val threshold: Int,

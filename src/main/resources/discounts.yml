@@ -1,0 +1,35 @@
+# Discount Configuration
+# =======================
+# This configuration file defines the discount rules that are applied to products during price calculations.
+# There are two types of discounts defined here:
+# 1. Fixed Percentage Discounts
+# 2. Count-Based Discounts
+
+# 1. Fixed Percentage Discounts:
+# ------------------------------
+# These discounts apply a fixed percentage reduction to the total price of all products.
+# The `discountModifier` represents the percentage multiplier applied to the total price.
+# For example, a `discountModifier` of "0.90" means a 10% discount on the total price.
+
+fixedPercentageDiscounts:
+  - discountModifier: "0.90"
+  - discountModifier: "0.95"
+
+# 2. Count-Based Discounts:
+# -------------------------
+# These discounts are applied based on the quantity of specific products.
+# If the number of units for a particular product exceeds the specified `threshold`,
+# the `discountModifier` is applied to that product's price.
+#
+# Each discount has:
+# - `discountModifier`: The percentage multiplier applied when the threshold is met.
+# - `productId`: The ID of the product to which this discount applies.
+# - `threshold`: The minimum quantity required for the discount to apply.
+
+countBasedDiscounts:
+  - discountModifier: "0.50"
+    productId: "d4e5f7b2-91e8-4c62-b6ae-14f5d3c3e8b3"
+    threshold: 2
+  - discountModifier: "0.25"
+    productId: "c5f8cdd8-0d5c-4e5d-998e-23c6a0d3486e"
+    threshold: 8
