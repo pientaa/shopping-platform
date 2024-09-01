@@ -7,12 +7,16 @@ data class CountBasedDiscount(
     override val discountModifier: DiscountModifier,
     val productId: UUID,
     val threshold: Int,
-) : Discount<ProductCartEntry> {
-    override fun appliedTo(item: ProductCartEntry): Money {
-        return if (item.productQuantity.value >= threshold) {
-            item.productPrice * discountModifier.value
-        } else {
-            item.productPrice
+) : Discount {
+    override fun appliedTo(item: Discountable): Money {
+        return when (item) {
+            is ProductCartEntry -> if (item.productQuantity.value >= threshold) {
+                item.productPrice * discountModifier.value
+            } else {
+                item.productPrice
+            }
+
+            is Money -> throw IllegalArgumentException("Money type is not supported by this type of discount")
         }
     }
 }

@@ -1,8 +1,8 @@
-package com.pientaa.shoppingplatform.pricing.external.product
+package com.pientaa.shoppingplatform.pricing.external.products
 
 import com.pientaa.shoppingplatform.pricing.domain.model.Money
 import com.pientaa.shoppingplatform.pricing.domain.model.Product
-import com.pientaa.shoppingplatform.pricing.external.product.dto.ProductExternalDTO
+import com.pientaa.shoppingplatform.pricing.external.products.dto.ProductExternalDTO
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.util.Currency

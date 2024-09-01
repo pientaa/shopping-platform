@@ -11,5 +11,5 @@ class DiscountService(
     fun calculateTotalPrice(productCart: ProductCart): Money =
         PriceCalculator().calculateTotalPrice(productCart, discountRepository.getAllActive())
 
-    fun createDiscount(discount: Discount<*>): Discount<*> = discountRepository.save(discount)
+    fun createDiscount(discount: Discount): Discount = discountRepository.save(discount)
 }

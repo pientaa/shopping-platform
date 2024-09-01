@@ -6,7 +6,7 @@ import com.pientaa.shoppingplatform.pricing.domain.DiscountService
 import com.pientaa.shoppingplatform.pricing.domain.model.Money
 import com.pientaa.shoppingplatform.pricing.domain.model.ProductCart
 import com.pientaa.shoppingplatform.pricing.domain.model.Quantity
-import com.pientaa.shoppingplatform.pricing.external.product.ProductClient
+import com.pientaa.shoppingplatform.pricing.external.products.ProductClient
 import org.springframework.stereotype.Service
 
 @Service

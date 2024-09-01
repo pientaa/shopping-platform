@@ -9,7 +9,7 @@ import com.pientaa.shoppingplatform.pricing.domain.model.ProductCartEntry
 import java.util.UUID
 
 class PriceCalculator {
-    fun calculateTotalPrice(cart: ProductCart, discounts: List<Discount<*>>): Money {
+    fun calculateTotalPrice(cart: ProductCart, discounts: List<Discount>): Money {
         require(cart.isNotEmpty()) { "Cart is empty" }
 
         val productsDiscounts: Map<UUID, CountBasedDiscount> =

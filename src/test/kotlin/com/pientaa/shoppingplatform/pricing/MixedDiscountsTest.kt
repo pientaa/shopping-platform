@@ -19,7 +19,7 @@ class MixedDiscountsTest : BehaviorSpec({
 
     Given("No products in cart") {
         val productCart = ProductCart(mapOf())
-        val discounts = listOf<Discount<*>>()
+        val discounts = listOf<Discount>()
 
         When("Calculate total price") {
             Then("Should throw an exception") {
@@ -38,8 +38,7 @@ class MixedDiscountsTest : BehaviorSpec({
         )
 
         And("Two fixed 10% discounts") {
-            //TODO: Get rid of wildcards
-            val fixedPercentageDiscounts: List<Discount<*>> =
+            val fixedPercentageDiscounts: List<Discount> =
                 listOf(
                     FixedPercentageDiscount(discountModifier = DiscountModifier.from("0.9")),
                     FixedPercentageDiscount(discountModifier = DiscountModifier.from("0.9")),
@@ -57,7 +56,7 @@ class MixedDiscountsTest : BehaviorSpec({
                 val firstProduct = productCart.cart.keys.first()
                 val lastProduct = productCart.cart.keys.last()
 
-                val countBasedDiscounts: List<Discount<*>> =
+                val countBasedDiscounts: List<Discount> =
                     listOf(
                         CountBasedDiscount(
                             discountModifier = DiscountModifier.from("0.5"),

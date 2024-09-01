@@ -1,8 +1,8 @@
 package com.pientaa.shoppingplatform.pricing.domain.model
 
 import java.math.BigDecimal
-import java.util.Currency
 import java.math.RoundingMode
+import java.util.Currency
 
 
 /**
@@ -20,7 +20,7 @@ import java.math.RoundingMode
 class Money private constructor(
     val amount: BigDecimal,
     val currency: Currency,
-) {
+) : Discountable {
     companion object {
         private const val SCALE = 2
 

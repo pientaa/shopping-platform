@@ -21,11 +21,8 @@ class CountBasedDiscountsTest : BehaviorSpec({
         )
 
         And("Product count = 1") {
-            //TODO: Some factory funcion?
-            val cartEntry = ProductCartEntry(
-                mapOf(
-                    Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(1),
-                ).entries.first()
+            val cartEntry = ProductCartEntry.from(
+                Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(1),
             )
 
             When("Calculate cart entry price") {
@@ -38,10 +35,8 @@ class CountBasedDiscountsTest : BehaviorSpec({
         }
 
         And("Product count = 4") {
-            val cartEntry = ProductCartEntry(
-                mapOf(
-                    Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(4),
-                ).entries.first()
+            val cartEntry = ProductCartEntry.from(
+                Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(4),
             )
             When("Calculate cart entry price") {
                 val cartEntryPrice = discount.appliedTo(cartEntry)
@@ -53,10 +48,8 @@ class CountBasedDiscountsTest : BehaviorSpec({
         }
 
         And("Product count = 5") {
-            val cartEntry = ProductCartEntry(
-                mapOf(
-                    Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(5),
-                ).entries.first()
+            val cartEntry = ProductCartEntry.from(
+                Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(5),
             )
 
             When("Calculate cart entry price") {
@@ -69,10 +62,8 @@ class CountBasedDiscountsTest : BehaviorSpec({
         }
 
         And("Product count = 10") {
-            val cartEntry = ProductCartEntry(
-                mapOf(
-                    Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(5),
-                ).entries.first()
+            val cartEntry = ProductCartEntry.from(
+                Product(id = UUID.randomUUID(), price = Money.ofDollars("100.00")) to Quantity(5),
             )
             When("Calculate cart entry price") {
                 val cartEntryPrice = discount.appliedTo(cartEntry)
@@ -80,7 +71,6 @@ class CountBasedDiscountsTest : BehaviorSpec({
                 Then("The price should be lowered by 5%") {
                     cartEntryPrice shouldBe cartEntry.productPrice * BigDecimal("0.95")
                 }
-
             }
         }
     }
